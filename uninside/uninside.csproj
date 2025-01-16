@@ -57,11 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Comment\Comment.cs" />
+    <Compile Include="API\Comment\CommentList.cs" />
+    <Compile Include="API\Post\Post.cs" />
+    <Compile Include="API\Post\PostInfo.cs" />
     <Compile Include="App.cs" />
     <Compile Include="Auth\Auth.cs" />
     <Compile Include="Auth\Checkin.cs" />
     <Compile Include="Auth\RandomFidGenerator.cs" />
-    <Compile Include="Http\Http.cs" />
+    <Compile Include="Http\HttpRequest.cs" />
     <Compile Include="Tiny\DefaultDecoder.cs" />
     <Compile Include="Tiny\DefaultEncoder.cs" />
     <Compile Include="Tiny\Extensions.cs" />
@@ -72,12 +76,13 @@
     <Compile Include="Tiny\JsonParser.cs" />
     <Compile Include="Uninside.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\ApiUrls.cs" />
-    <Compile Include="Utils\Utils.cs" />
-    <Compile Include="Utils\Values.cs" />
+    <Compile Include="Util\ApiUrls.cs" />
+    <Compile Include="Util\Utils.cs" />
+    <Compile Include="Util\Values.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

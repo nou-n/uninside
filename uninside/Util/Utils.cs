@@ -1,8 +1,9 @@
 ﻿using System.Text;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace uninside.Utils
+namespace uninside.Util
 {
     internal static class Utils
     {
@@ -53,6 +54,37 @@ namespace uninside.Utils
             ulong high = (ulong)random.Next(int.MinValue, int.MaxValue);
             ulong low = (ulong)random.Next(int.MinValue, int.MaxValue);
             return (long)((high << 32) | low);
+        }
+
+        public static object GetValue(this Dictionary<string, object> dictionary, string key)
+        {
+            return dictionary.ContainsKey(key) ? dictionary[key] : null;
+        }
+
+        //
+
+        public static async Task<Http.HttpResponse> RedirectRequest(string url)
+        {
+            Http.HttpResponse response = await Http.HttpRequest.GetAsync(ApiUrls.REDIRECT + "?" + Http.HttpRequest.UrlEncode(new Dictionary<string, string>
+                {
+                    { "hash", Convert.ToBase64String(Encoding.UTF8.GetBytes(url)) }
+                }
+            ), headers: defaultHeaders);
+            return response;
+        }
+        public static string GetGalleryId(string id, GalleryType galleryType)
+        {
+            switch (galleryType)
+            {
+                case GalleryType.Normal:
+                    return id;
+                case GalleryType.Minor:
+                    return id.StartsWith("m$") ? id : "m$" + id;
+                case GalleryType.Mini:
+                    return id.StartsWith("mi$") ? id : "mi$" + id;
+                default:
+                    return id;
+            }
         }
     }
 }

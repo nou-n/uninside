@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace uninside.Http
 {
-    internal static class Http
+    internal static class HttpRequest
     {
         static private HttpClient httpClient;
 
-        static Http()
+        static HttpRequest()
         {
             httpClient = new HttpClient();
         }
