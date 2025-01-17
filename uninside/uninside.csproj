@@ -57,15 +57,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Comment\Comment.cs" />
-    <Compile Include="API\Comment\CommentList.cs" />
-    <Compile Include="API\Post\Post.cs" />
-    <Compile Include="API\Post\PostInfo.cs" />
     <Compile Include="App.cs" />
-    <Compile Include="Auth\Auth.cs" />
+    <Compile Include="Auth\App.cs" />
+    <Compile Include="Auth\AuthManager.cs" />
     <Compile Include="Auth\Checkin.cs" />
     <Compile Include="Auth\RandomFidGenerator.cs" />
+    <Compile Include="Comment\Comment.cs" />
+    <Compile Include="Comment\CommentManager.cs" />
+    <Compile Include="Gallery\Gallery.cs" />
     <Compile Include="Http\HttpRequest.cs" />
+    <Compile Include="Post\Post.cs" />
+    <Compile Include="Post\PostManager.cs" />
+    <Compile Include="Post\PostPreview.cs" />
     <Compile Include="Tiny\DefaultDecoder.cs" />
     <Compile Include="Tiny\DefaultEncoder.cs" />
     <Compile Include="Tiny\Extensions.cs" />

@@ -20,7 +20,7 @@ using System.IO;
 namespace uninside.Auth
 {
 
-    internal class Auth
+    internal class AuthManager
     {
         private TimeZoneInfo seoulTimeZone;
         private DateTime? lastRefreshTime = null;
@@ -30,7 +30,7 @@ namespace uninside.Auth
         private string fid = RandomFidGenerator.CreateRandomFid();
         private string refreshToken = "";
 
-        internal Auth()
+        internal AuthManager()
         {
             string timeZoneId = Environment.OSVersion.Platform == PlatformID.Win32NT ? "Korea Standard Time" : "Asia/Seoul";
             seoulTimeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);

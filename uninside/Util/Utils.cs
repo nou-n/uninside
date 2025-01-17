@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using uninside.Gallery;
 
 namespace uninside.Util
 {
@@ -61,6 +62,13 @@ namespace uninside.Util
             return dictionary.ContainsKey(key) ? dictionary[key] : null;
         }
 
+        public static bool ToBoolean(string yn)
+        {
+            if (string.IsNullOrEmpty(yn))
+                return false;
+            return yn.Trim().ToUpper() == "Y";
+        }
+
         //
 
         public static async Task<Http.HttpResponse> RedirectRequest(string url)
@@ -79,7 +87,8 @@ namespace uninside.Util
                 case GalleryType.Normal:
                     return id;
                 case GalleryType.Minor:
-                    return id.StartsWith("m$") ? id : "m$" + id;
+                    // return id.StartsWith("m$") ? id : "m$" + id;
+                    return id;
                 case GalleryType.Mini:
                     return id.StartsWith("mi$") ? id : "mi$" + id;
                 default:
