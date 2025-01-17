@@ -2,6 +2,19 @@
 
 Unofficial DCInside API written in C#
 
+## 사용
+```csharp
+Uninside uninside = new Uninside();
+await uninside.Initialize();
+
+Post post = await uninside.GetPost("tree", GalleryType.Normal, "");
+Console.WriteLine(post.PostTitle);
+
+CommentList comments = await post.GetCommentList(uninside);
+Comment comment = comments.Items[0];
+Console.WriteLine(comment.WriterName + ": " + comment.CommentContent);
+```
+
 ## 참고한 프로젝트
 | 프로젝트        | 설명                                   | 
 |-------------------|---------------------------------------|
