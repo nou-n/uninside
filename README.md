@@ -7,12 +7,24 @@ Unofficial DCInside API written in C#
 Uninside uninside = new Uninside();
 await uninside.Initialize();
 
-Post post = await uninside.GetPost("tree", GalleryType.Normal, "");
-Console.WriteLine(post.PostTitle);
+Gallery gallery = new Gallery("chaeyaena", GalleryType.Minor, null, null);
 
-CommentList comments = await post.GetCommentList(uninside);
-Comment comment = comments.Items[0];
-Console.WriteLine(comment.WriterName + ": " + comment.CommentContent);
+PostManager postManager = new PostManager(uninside);
+Post post = await postManager.ReadPost(gallery, "731835");
+
+Console.WriteLine("[" + post.HeadTitle + "] " + post.Title);
+Console.WriteLine(post.WriterName + " (" + post.WriterId + ")");
+
+CommentManager commentManager = new CommentManager(uninside);
+List<Comment> commentList = await commentManager.GetCommentList(gallery, post.Id);
+
+foreach(Comment comment in commentList)
+{
+  Console.WriteLine(
+    (comment.isReply ? "ㄴ " : "") +
+    comment.WriterName + ": " + comment.Content
+  );
+}
 ```
 
 ## 참고한 프로젝트
