@@ -7,6 +7,7 @@ using Tiny;
 using uninside.Gallery;
 using uninside.Http;
 using uninside.Util;
+using uninside.Post;
 
 namespace uninside.Comment
 {
@@ -43,6 +44,7 @@ namespace uninside.Comment
             }
             return comments;
         }
-        async public Task<List<Comment>> GetCommentList(Gallery.Gallery gallery, string postNo, int listPage = 1) => await GetCommentList(gallery.Id, gallery.Type, postNo);
+        async public Task<List<Comment>> GetCommentList(Gallery.Gallery gallery, string postNo, int listPage = 1) => await GetCommentList(gallery.Id, gallery.Type, postNo, listPage);
+        async public Task<List<Comment>> GetCommentList(Post.Post post, int listPage = 1) => await GetCommentList(post.Gallery.Id, post.Gallery.Type, post.Id, listPage);
     }
 }

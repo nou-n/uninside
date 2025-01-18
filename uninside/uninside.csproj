@@ -64,6 +64,7 @@
     <Compile Include="Comment\Comment.cs" />
     <Compile Include="Comment\CommentManager.cs" />
     <Compile Include="Gallery\Gallery.cs" />
+    <Compile Include="Gallery\GalleryManager.cs" />
     <Compile Include="Http\HttpRequest.cs" />
     <Compile Include="Post\Post.cs" />
     <Compile Include="Post\PostManager.cs" />
