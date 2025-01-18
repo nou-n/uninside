@@ -22,6 +22,10 @@ foreach (User subManager in gallery.SubManagers)
 
 //
 PostManager postManager = new PostManager(uninside);
+
+(GalleryInfo galleryInfo, List<PostSnippet> postList) = await postManager.GetPostList(gallery);
+Console.WriteLine(galleryInfo.DefaultNickname);
+
 Post post = await postManager.ReadPost(gallery, "731835");
 
 Console.WriteLine("[" + post.HeadTitle + "] " + post.Title);
