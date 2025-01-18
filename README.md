@@ -7,16 +7,30 @@ Unofficial DCInside API written in C#
 Uninside uninside = new Uninside();
 await uninside.Initialize();
 
-Gallery gallery = new Gallery("chaeyaena", GalleryType.Minor, null, null);
+//
+GalleryManager galleryManager = new GalleryManager(uninside);
+Gallery gallery = await galleryManager.GetGallery("chaeyaena", GalleryType.Minor);
 
+Console.WriteLine(gallery.Name);
+Console.WriteLine(gallery.Description);
+Console.WriteLine(gallery.Master.Name + " (" + gallery.Master.Id + ") - 매니저");
+
+foreach (User subManager in gallery.SubManagers)
+{
+  Console.WriteLine(subManager.Name + " (" + subManager.Id + ") - 부매니저");
+}
+
+//
 PostManager postManager = new PostManager(uninside);
 Post post = await postManager.ReadPost(gallery, "731835");
 
 Console.WriteLine("[" + post.HeadTitle + "] " + post.Title);
 Console.WriteLine(post.WriterName + " (" + post.WriterId + ")");
+Console.WriteLine(post.Category);
 
+//
 CommentManager commentManager = new CommentManager(uninside);
-List<Comment> commentList = await commentManager.GetCommentList(gallery, post.Id);
+List<Comment> commentList = await commentManager.GetCommentList(post);
 
 foreach(Comment comment in commentList)
 {
