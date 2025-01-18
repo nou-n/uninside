@@ -43,5 +43,17 @@ namespace uninside.Gallery
                 (string)data.GetValue("cate_name")
             );
         }
+    
+        public async Task<GalleryType> GetGalleryType(string galleryId)
+        {
+            HttpResponse response = await HttpRequest.GetAsync("https://gall.dcinside.com/board/lists/?id=" + galleryId);
+
+            if (response.StatusCode == 404) return GalleryType.Mini;
+
+            string data = await response.Message.Content.ReadAsStringAsync();
+
+            if (data.StartsWith("<script")) return GalleryType.Minor;
+            return GalleryType.Normal;
+        }
     }
 }

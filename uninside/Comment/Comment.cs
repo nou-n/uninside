@@ -20,7 +20,7 @@ namespace uninside.Comment
         #endregion
 
         #region 댓글
-        public string Content { get; private set; }
+        public string ContentHTML { get; private set; }
         public string Id { get; private set; } // commentNo
         public string Date { get; private set; }
         #endregion
@@ -47,7 +47,7 @@ namespace uninside.Comment
             DcConType = (string)jsonObject.GetValue("dccon_type");
             DcConMp4 = (string)jsonObject.GetValue("dccon_mp4");
 
-            Content = (string)jsonObject.GetValue("comment_memo");
+            ContentHTML = (string)jsonObject.GetValue("comment_memo");
             Id = (string)jsonObject.GetValue("comment_no");
             Date = (string)jsonObject.GetValue("date_time");
 
