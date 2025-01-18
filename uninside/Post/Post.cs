@@ -10,7 +10,10 @@ namespace uninside.Post
 {
     public class Post
     {
-        public Gallery.Gallery Gallery { get; private set; }
+        public string GalleryId { get; private set; }
+        public GalleryType GalleryType { get; private set; }
+        public string GalleryTitle { get; private set; }
+        public string GalleryNickname { get; private set; }
         public string Category { get; private set; }
 
         #region 게시글
@@ -65,7 +68,10 @@ namespace uninside.Post
 
         public Post(string galleryId, GalleryType galleryType, Dictionary<string, object> viewInfo, Dictionary<string, object> viewMain)
         {
-            this.Gallery = new Gallery.Gallery(galleryId, galleryType, (string)viewInfo.GetValue("galltitle"), (string)viewInfo.GetValue("gall_nickname"));
+            GalleryId = galleryId;
+            this.GalleryType = galleryType;
+            GalleryTitle = (string)viewInfo.GetValue("galltitle");
+            GalleryNickname = (string)viewInfo.GetValue("gall_nickname");
 
             Category = (string)viewInfo.GetValue("category");
 

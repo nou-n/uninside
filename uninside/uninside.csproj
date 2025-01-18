@@ -79,6 +79,7 @@
     <Compile Include="Tiny\JsonParser.cs" />
     <Compile Include="Uninside.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\User.cs" />
     <Compile Include="Util\ApiUrls.cs" />
     <Compile Include="Util\Utils.cs" />
     <Compile Include="Util\Values.cs" />

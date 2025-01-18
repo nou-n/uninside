@@ -21,7 +21,6 @@ namespace uninside.Post
 
         async public Task<Post> ReadPost(string galleryId, GalleryType galleryType, string postNo)
         {
-            Console.WriteLine(galleryId, galleryType);
             HttpResponse articleResponse = await Utils.RedirectRequest(ApiUrls.Article.READ + "?" + HttpRequest.UrlEncode(new Dictionary<string, string>()
                 {
                     { "id", Utils.GetGalleryId(galleryId, galleryType) },
