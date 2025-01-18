@@ -37,9 +37,9 @@ namespace uninside.Gallery
                 (string)data.GetValue("master_name"),
                 (List<object>)data.GetValue("submanager"),
                 (string)data.GetValue("create_dt"),
-                (bool)data.GetValue("new"),
+                (bool) (data.GetValue("new") ?? false),
                 (string)data.GetValue("hot_state"),
-                int.Parse(((string)data.GetValue("total_count")).Replace(",", "")),
+                int.Parse(((string) (data.GetValue("total_count") ?? "0")).Replace(",", "")),
                 (string)data.GetValue("cate_name")
             );
         }

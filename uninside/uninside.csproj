@@ -64,11 +64,13 @@
     <Compile Include="Comment\Comment.cs" />
     <Compile Include="Comment\CommentManager.cs" />
     <Compile Include="Gallery\Gallery.cs" />
+    <Compile Include="Gallery\GalleryInfo.cs" />
     <Compile Include="Gallery\GalleryManager.cs" />
     <Compile Include="Http\HttpRequest.cs" />
     <Compile Include="Post\Post.cs" />
     <Compile Include="Post\PostManager.cs" />
     <Compile Include="Post\PostPreview.cs" />
+    <Compile Include="Post\PostSnippet.cs" />
     <Compile Include="Tiny\DefaultDecoder.cs" />
     <Compile Include="Tiny\DefaultEncoder.cs" />
     <Compile Include="Tiny\Extensions.cs" />

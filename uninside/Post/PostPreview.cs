@@ -7,6 +7,9 @@ using uninside.Gallery;
 
 namespace uninside.Post
 {
+    /// <summary>
+    /// ReadPost를 호출했을 때 이전 게시글과 다음 게시글에 대한 정보를 담는 모델
+    /// </summary>
     public class PostPreview
     {
         public string GalleryId { get; private set; }
