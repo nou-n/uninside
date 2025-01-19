@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using Tiny;
 using uninside.Util;
 using uninside.Auth;
+using uninside.Post;
+using uninside.Comment;
+using uninside.Gallery;
 
 namespace uninside
 {
@@ -33,5 +36,9 @@ namespace uninside
             app = new App(token: hashedAppKey, id: id, fcm: fcm);
             return app.Id;
         }
+
+        public GalleryManager GetGalleryManager() => new GalleryManager(this);
+        public PostManager GetPostManager() => new PostManager(this);
+        public CommentManager GetCommentManager() => new CommentManager(this);
     }
 }

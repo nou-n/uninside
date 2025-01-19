@@ -44,7 +44,7 @@ namespace uninside.Post
         }
         async public Task<Post> ReadPost(Gallery.Gallery gallery, string postNo) => await ReadPost(gallery.Id, gallery.Type, postNo);
 
-        async public Task<(GalleryInfo galleryInfo, List<PostSnippet> postList)> GetPostList(string galleryId, GalleryType galleryType, int page = 1)
+        async public Task<(GalleryInfo galleryInfo, List<PostSnippet> postList)> GetNewPosts(string galleryId, GalleryType galleryType, int page = 1)
         {
             HttpResponse postListResponse = await Utils.RedirectRequest(ApiUrls.Article.LIST + "?" + HttpRequest.UrlEncode(new Dictionary<string, string>()
                 {
@@ -110,6 +110,6 @@ namespace uninside.Post
                 postList
             );
         }
-        async public Task<(GalleryInfo galleryInfo, List<PostSnippet> postList)> GetPostList(Gallery.Gallery gallery, int page = 1) => await GetPostList(gallery.Id, gallery.Type, page);
+        async public Task<(GalleryInfo galleryInfo, List<PostSnippet> postList)> GetNewPosts(Gallery.Gallery gallery, int page = 1) => await GetNewPosts(gallery.Id, gallery.Type, page);
     }
 }
