@@ -79,10 +79,7 @@ namespace uninside.Auth
 
                 }
             }
-            else
-            {
-                return GenerateHexString($"dcArdchk_{time}");
-            }
+            else return GenerateHexString($"dcArdchk_{time}");
 
             lastRefreshTime = now;
             time = DateToString(now);

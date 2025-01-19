@@ -31,9 +31,10 @@ namespace uninside.Post
         public int CommentCaptchaLength { get; private set; }
         #endregion
 
+        public string Level { get; private set; }
+
         #region 글쓴이
         public string WriterName { get; private set; }
-        public string WriterLevel { get; private set; }
         public string WriterIp { get; private set; }
         public string WriterId { get; private set; }
         public string WriterIcon { get; private set; }
@@ -90,7 +91,7 @@ namespace uninside.Post
             TotalViews = int.Parse((string)viewInfo.GetValue("hit"));
 
             WriterName = (string)viewInfo.GetValue("name");
-            WriterLevel = (string)viewInfo.GetValue("level");
+            Level = (string)viewInfo.GetValue("level");
             WriterIp = (string)viewInfo.GetValue("ip");
             WriterId = (string)viewInfo.GetValue("user_id");
             WriterIcon = (string)viewInfo.GetValue("member_icon");

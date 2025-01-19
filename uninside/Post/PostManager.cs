@@ -64,6 +64,34 @@ namespace uninside.Post
             List<object> gallList = (List<object>)jsonData["gall_list"];
 
             List<PostSnippet> postList = new List<PostSnippet>();
+            foreach(Dictionary<string, object> dict in gallList)
+            {
+                postList.Add(new PostSnippet(
+                    (string)dict.GetValue("no"),
+                    (string)dict.GetValue("headnum"),
+                    (string)dict.GetValue("hit"),
+                    (string)dict.GetValue("recommend"),
+                    (string)dict.GetValue("img_icon"),
+                    (string)dict.GetValue("movie_icon"),
+                    (string)dict.GetValue("recommend_icon"),
+                    (string)dict.GetValue("best_chk"),
+                    (string)dict.GetValue("realtime_chk"),
+                    (string)dict.GetValue("realtime_l_chk"),
+                    (string)dict.GetValue("nft_chk"),
+                    (string)dict.GetValue("level"),
+                    (string)dict.GetValue("total_comment"),
+                    (string)dict.GetValue("total_voice"),
+                    (string)dict.GetValue("user_id"),
+                    (string)dict.GetValue("voice_icon"),
+                    (string)dict.GetValue("winnerta_icon"),
+                    (string)dict.GetValue("member_icon"),
+                    (string)dict.GetValue("ip"),
+                    (string)dict.GetValue("subject"),
+                    (string)dict.GetValue("name"),
+                    (string)dict.GetValue("date_time"),
+                    (string)dict.GetValue("headtext")
+                ));
+            }
 
             return (
                 new GalleryInfo(
