@@ -20,7 +20,7 @@ foreach (User subManager in gallery.SubManagers) Console.WriteLine(subManager.Na
 ```csharp
 PostManager postManager = new PostManager(uninside);
 
-(GalleryInfo galleryInfo, List<PostSnippet> postList) = await postManager.GetPostList(gallery);
+(GalleryInfo galleryInfo, List<PostSnippet> postList) = await postManager.GetNewPosts(gallery);
 string selectedHeadText = galleryInfo.HeadTexts.FirstOrDefault(ht => ht.Selected).Name;
 foreach (PostSnippet postSnippet in postList)
   Console.WriteLine("[" + (string.IsNullOrEmpty(postSnippet.HeadText) ? selectedHeadText : postSnippet.HeadText) + "] " + postSnippet.Title + " - " + postSnippet.WriterName);
