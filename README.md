@@ -3,46 +3,47 @@
 Unofficial DCInside API written in C#
 
 ## 사용
-```csharp
-Uninside uninside = new Uninside();
-await uninside.Initialize();
 
-//
+### GalleryManager
+```csharp
 GalleryManager galleryManager = new GalleryManager(uninside);
-Gallery gallery = await galleryManager.GetGallery("chaeyaena", GalleryType.Minor);
+
+GalleryType galleryType = await galleryManager.GetGalleryType("chaeyaena");
+Gallery gallery = await galleryManager.GetGallery("chaeyaena", galleryType);
 
 Console.WriteLine(gallery.Name);
 Console.WriteLine(gallery.Description);
 Console.WriteLine(gallery.Master.Name + " (" + gallery.Master.Id + ") - 매니저");
-
-foreach (User subManager in gallery.SubManagers)
-{
-  Console.WriteLine(subManager.Name + " (" + subManager.Id + ") - 부매니저");
-}
-
-//
+foreach (User subManager in gallery.SubManagers) Console.WriteLine(subManager.Name + " (" + subManager.Id + ") - 부매니저");
+```
+### PostManager
+```csharp
 PostManager postManager = new PostManager(uninside);
 
 (GalleryInfo galleryInfo, List<PostSnippet> postList) = await postManager.GetPostList(gallery);
-Console.WriteLine(galleryInfo.DefaultNickname);
+string selectedHeadText = galleryInfo.HeadTexts.FirstOrDefault(ht => ht.Selected).Name;
+foreach (PostSnippet postSnippet in postList)
+  Console.WriteLine("[" + (string.IsNullOrEmpty(postSnippet.HeadText) ? selectedHeadText : postSnippet.HeadText) + "] " + postSnippet.Title + " - " + postSnippet.WriterName);
 
-Post post = await postManager.ReadPost(gallery, "731835");
-
+Post post = await postManager.ReadPost(gallery, galleryInfo.MustReadId);
 Console.WriteLine("[" + post.HeadTitle + "] " + post.Title);
 Console.WriteLine(post.WriterName + " (" + post.WriterId + ")");
 Console.WriteLine(post.Category);
-
-//
+```
+### CommentManager
+```csharp
 CommentManager commentManager = new CommentManager(uninside);
 List<Comment> commentList = await commentManager.GetCommentList(post);
 
 foreach(Comment comment in commentList)
-{
   Console.WriteLine(
-    (comment.isReply ? "ㄴ " : "") +
-    comment.WriterName + ": " + comment.Content
+    (string.IsNullOrEmpty(comment.WriterName) && string.IsNullOrEmpty(comment.ContentHTML)) ? "이 댓글은 게시물 작성자가 삭제하였습니다." :
+    (
+      (comment.isReply ? "ㄴ " : "") +
+      comment.WriterName + ": " + 
+      (string.IsNullOrEmpty(comment.DcCon) ? comment.ContentHTML : comment.DcCon)
+    )
   );
-}
 ```
 
 ## 참고한 프로젝트
