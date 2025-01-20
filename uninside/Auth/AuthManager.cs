@@ -193,8 +193,8 @@ namespace uninside.Auth
             });
             string clientToken = (await register3Response.Message.Content.ReadAsStringAsync()).Split('=')[1];
 
-            await RequestToGcmWithScope(androidCheckin, clientToken, token, Values.Register3.X_SCOPE_REFRESH_REMOTE_CONFIG);
-            await RequestToGcmWithScope(androidCheckin, clientToken, token, Values.Register3.X_SCOPE_SHOW_NOTICE_MESSAGE);
+            /*await*/ RequestToGcmWithScope(androidCheckin, clientToken, token, Values.Register3.X_SCOPE_REFRESH_REMOTE_CONFIG);
+            /*await*/ RequestToGcmWithScope(androidCheckin, clientToken, token, Values.Register3.X_SCOPE_SHOW_NOTICE_MESSAGE);
 
             Dictionary<string, object> remoteConfigPayload = new Dictionary<string, object>
             {
