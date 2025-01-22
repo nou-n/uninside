@@ -4,9 +4,16 @@ Unofficial DCInside API written in C#
 
 ## 사용
 
+### Uninside
+```csharp
+Uninside uninside = new Uninside(new LoginUser("userId", "password"));
+                    new Uninside(new Anonymous("ㅇㅇ", "12345"));
+await uninside.Initialize();
+```
+
 ### GalleryManager
 ```csharp
-GalleryManager galleryManager = new GalleryManager(uninside);
+GalleryManager galleryManager = uninside.GetGalleryManager();
 
 GalleryType galleryType = await galleryManager.GetGalleryType("chaeyaena");
 Gallery gallery = await galleryManager.GetGallery("chaeyaena", galleryType);
@@ -18,7 +25,7 @@ foreach (User subManager in gallery.SubManagers) Console.WriteLine(subManager.Na
 ```
 ### PostManager
 ```csharp
-PostManager postManager = new PostManager(uninside);
+PostManager postManager = uninside.GetPostManager();
 
 (GalleryInfo galleryInfo, List<PostSnippet> postList) = await postManager.GetPostList(gallery);
 string selectedHeadText = galleryInfo.HeadTexts.FirstOrDefault(ht => ht.Selected).Name;
@@ -32,7 +39,7 @@ Console.WriteLine(post.Category);
 ```
 ### CommentManager
 ```csharp
-CommentManager commentManager = new CommentManager(uninside);
+CommentManager commentManager = uninside.GetCommentManager();
 List<Comment> commentList = await commentManager.GetCommentList(post);
 
 foreach(Comment comment in commentList)
