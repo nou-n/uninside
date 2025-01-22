@@ -111,8 +111,6 @@ namespace uninside.Post
             NftOnChainChk = ToBoolean((string)viewInfo.GetValue("nft_onchain_chk"));
             IsNotice = ToBoolean((string)viewInfo.GetValue("isNotice"));
 
-            // 현재 게시글과 NextPost, PreviousPost의 갤러리가 다른 경우가 있는지 확인 필요
-
             if (viewInfo.ContainsKey("prev_post"))
             {
                 Dictionary<string, object> previousPost = (Dictionary<string, object>)viewInfo["prev_post"];
