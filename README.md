@@ -21,7 +21,7 @@ Gallery gallery = await galleryManager.GetGallery("chaeyaena", galleryType);
 Console.WriteLine(gallery.Name);
 Console.WriteLine(gallery.Description);
 Console.WriteLine(gallery.Master.Name + " (" + gallery.Master.Id + ") - 매니저");
-foreach (User subManager in gallery.SubManagers) Console.WriteLine(subManager.Name + " (" + subManager.Id + ") - 부매니저");
+foreach (Member subManager in gallery.SubManagers) Console.WriteLine(subManager.Name + " (" + subManager.Id + ") - 부매니저");
 ```
 ### PostManager
 ```csharp
