@@ -97,18 +97,18 @@ namespace uninside.Util
             }
         }
 
-        public static string GetSessionType(this UserType userType)
+        public static UserType GetUserType(string sessionType)
         {
-            switch (userType)
+            switch (sessionType)
             {
-                case UserType.ANONYMOUS:
-                    return "C";
-                case UserType.NAMED:
-                    return "A";
-                case UserType.DUPLICATE_NAMED:
-                    return "B";
+                case "C":
+                    return UserType.ANONYMOUS;
+                case "A":
+                    return UserType.NAMED;
+                case "B":
+                    return UserType.DUPLICATE_NAMED;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(userType), userType, null);
+                    throw new ArgumentException("유효하지 않은 세션 타입입니다.", nameof(sessionType));
             }
         }
     }

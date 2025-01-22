@@ -85,6 +85,8 @@
     <Compile Include="User\IUser.cs" />
     <Compile Include="User\LoginManager.cs" />
     <Compile Include="User\LoginUser.cs" />
+    <Compile Include="User\Named\DuplicateNamed.cs" />
+    <Compile Include="User\Named\Named.cs" />
     <Compile Include="User\Session.cs" />
     <Compile Include="User\Member.cs" />
     <Compile Include="User\SessionDetail.cs" />
