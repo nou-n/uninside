@@ -16,8 +16,8 @@ namespace uninside.Gallery
         public string ThumbnailUrl { get; private set; }
         public string Description { get; private set; }
 
-        public User.User Master { get; private set; }
-        public List<User.User> SubManagers { get; private set; }
+        public User.Member Master { get; private set; }
+        public List<User.Member> SubManagers { get; private set; }
 
         public string Date { get; private set; } // 2025.01.01 형식
         public bool IsNew { get; private set; }
@@ -35,15 +35,15 @@ namespace uninside.Gallery
             ThumbnailUrl = imageUrl;
             Description = galleryDescription;
 
-            Master = (masterId != null && masterName != null) ? new User.User(masterId, masterName) : null;
+            Master = (masterId != null && masterName != null) ? new User.Member(masterId, masterName) : null;
 
             if (subManagers != null)
             {
-                SubManagers = new List<User.User>();
+                SubManagers = new List<User.Member>();
                 foreach (Dictionary<string, object> subManager in subManagers)
                 {
                     if (subManager.ContainsKey("id") && subManager.ContainsKey("name"))
-                        SubManagers.Add(new User.User(subManager["id"].ToString(), subManager["name"].ToString()));
+                        SubManagers.Add(new User.Member(subManager["id"].ToString(), subManager["name"].ToString()));
                 }
             }
             else SubManagers = null;

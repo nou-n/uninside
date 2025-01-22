@@ -8,33 +8,45 @@ using uninside.Auth;
 using uninside.Post;
 using uninside.Comment;
 using uninside.Gallery;
+using uninside.User;
 
 namespace uninside
 {
     public class Uninside
     {
-        private AuthManager authManager;
-        private App app;
+        private AuthManager AuthManagerInstance;
+        private IUser CurrentUser;
 
-        public Uninside()
+        internal App AppInstance;
+        internal Session CurrentSession;
+
+        internal bool isInitialized = false;
+
+        public Uninside(IUser user)
         {
-            authManager = new AuthManager();
+            AuthManagerInstance = new AuthManager();
+            CurrentUser = user;
         }
 
         async public Task Initialize()
         {
             await GetAppId();
+
+            LoginManager loginManager = new LoginManager(this);
+            CurrentSession = await loginManager.Login(CurrentUser);
+
+            isInitialized = true;
         }
 
         internal async Task<string> GetAppId()
         {
-            string hashedAppKey = await authManager.GenerateHashedAppKey();
+            string hashedAppKey = await AuthManagerInstance.GenerateHashedAppKey();
 
-            if (app != null && hashedAppKey == app.Token) return app.Id;
+            if (AppInstance != null && hashedAppKey == AppInstance.Token) return AppInstance.Id;
 
-            (string id, string fcm) = await authManager.FetchAppId(hashedAppKey);
-            app = new App(token: hashedAppKey, id: id, fcm: fcm);
-            return app.Id;
+            (string id, string fcm) = await AuthManagerInstance.FetchAppId(hashedAppKey);
+            AppInstance = new App(token: hashedAppKey, id: id, fcm: fcm);
+            return AppInstance.Id;
         }
 
         public GalleryManager GetGalleryManager() => new GalleryManager(this);

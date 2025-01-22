@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using uninside.Gallery;
+using uninside.User;
 
 namespace uninside.Util
 {
@@ -93,6 +94,21 @@ namespace uninside.Util
                     return id.StartsWith("mi$") ? id : "mi$" + id;
                 default:
                     return id;
+            }
+        }
+
+        public static string GetSessionType(this UserType userType)
+        {
+            switch (userType)
+            {
+                case UserType.ANONYMOUS:
+                    return "C";
+                case UserType.NAMED:
+                    return "A";
+                case UserType.DUPLICATE_NAMED:
+                    return "B";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(userType), userType, null);
             }
         }
     }

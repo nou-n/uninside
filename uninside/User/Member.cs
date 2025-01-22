@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace uninside.User
 {
-    public class User
+    public class Member
     {
         public string Id { get; private set; }
         public string Name { get; private set; }
 
-        public User(string userId, string userName)
+        public Member(string userId, string userName)
         {
             Id = userId;
             Name = userName;
