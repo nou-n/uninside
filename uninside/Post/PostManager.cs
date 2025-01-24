@@ -16,7 +16,7 @@ namespace uninside.Post
         
         public PostManager(Uninside uninside)
         {
-            if (!uninside.isInitialized) throw new Exception("Initialize 메서드를 먼저 호출해야 합니다.");
+            if (!uninside.IsInitialized) throw new Exception("Initialize 메서드를 먼저 호출해야 합니다.");
             this.Client = uninside;
         }
 

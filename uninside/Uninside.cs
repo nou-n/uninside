@@ -20,7 +20,7 @@ namespace uninside
         internal App AppInstance;
         internal Session CurrentSession;
 
-        internal bool isInitialized = false;
+        internal bool IsInitialized = false;
 
         public Uninside(IUser user)
         {
@@ -35,7 +35,7 @@ namespace uninside
             LoginManager loginManager = new LoginManager(this);
             CurrentSession = await loginManager.Login(CurrentUser);
 
-            isInitialized = true;
+            IsInitialized = true;
         }
 
         internal async Task<string> GetAppId()
