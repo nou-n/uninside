@@ -8,6 +8,7 @@ Unofficial DCInside API written in C#
 ```csharp
 Uninside uninside = new Uninside(new LoginUser("userId", "password"));
                     new Uninside(new Anonymous("ㅇㅇ", "12345"));
+
 await uninside.Initialize();
 ```
 
@@ -21,7 +22,9 @@ Gallery gallery = await galleryManager.GetGallery("chaeyaena", galleryType);
 Console.WriteLine(gallery.Name);
 Console.WriteLine(gallery.Description);
 Console.WriteLine(gallery.Master.Name + " (" + gallery.Master.Id + ") - 매니저");
-foreach (Member subManager in gallery.SubManagers) Console.WriteLine(subManager.Name + " (" + subManager.Id + ") - 부매니저");
+
+foreach (Member subManager in gallery.SubManagers)
+  Console.WriteLine(subManager.Name + " (" + subManager.Id + ") - 부매니저");
 ```
 ### PostManager
 ```csharp
@@ -29,8 +32,13 @@ PostManager postManager = uninside.GetPostManager();
 
 (GalleryInfo galleryInfo, List<PostSnippet> postList) = await postManager.GetPostList(gallery);
 string selectedHeadText = galleryInfo.HeadTexts.FirstOrDefault(ht => ht.Selected).Name;
+
 foreach (PostSnippet postSnippet in postList)
-  Console.WriteLine("[" + (string.IsNullOrEmpty(postSnippet.HeadText) ? selectedHeadText : postSnippet.HeadText) + "] " + postSnippet.Title + " - " + postSnippet.WriterName);
+  Console.WriteLine("[" +
+    (string.IsNullOrEmpty(postSnippet.HeadText) ? selectedHeadText : postSnippet.HeadText)
+    + "] " + postSnippet.Title
+    + " - " + postSnippet.WriterName
+  );
 
 Post post = await postManager.ReadPost(gallery, galleryInfo.MustReadId);
 Console.WriteLine("[" + post.HeadTitle + "] " + post.Title);
@@ -44,7 +52,9 @@ List<Comment> commentList = await commentManager.GetCommentList(post);
 
 foreach(Comment comment in commentList)
   Console.WriteLine(
-    (string.IsNullOrEmpty(comment.WriterName) && string.IsNullOrEmpty(comment.ContentHTML)) ? "이 댓글은 게시물 작성자가 삭제하였습니다." :
+    (
+      string.IsNullOrEmpty(comment.WriterName) && string.IsNullOrEmpty(comment.ContentHTML)
+    ) ? "이 댓글은 게시물 작성자가 삭제하였습니다." :
     (
       (comment.isReply ? "ㄴ " : "") +
       comment.WriterName + ": " + 
